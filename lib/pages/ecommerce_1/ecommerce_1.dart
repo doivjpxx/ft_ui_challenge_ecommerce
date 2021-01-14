@@ -21,6 +21,7 @@ class _MyEcommerce1State extends State<MyEcommerce1> {
         title: Text('My Cart'),
         backgroundColor: Colors.red[400],
       ),
+      backgroundColor: Colors.grey[300],
       body: Column(
         children: <Widget>[
           Flexible(
