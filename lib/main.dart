@@ -4,6 +4,8 @@ import 'package:ft_ui_challenge_ecommerce/pages/ecommerce_2/ecommerce_2.dart';
 import 'package:ft_ui_challenge_ecommerce/pages/ecommerce_3/ecommerce_3.dart';
 import 'package:ft_ui_challenge_ecommerce/pages/ecommerce_4/ecommerce_4.dart';
 import 'package:ft_ui_challenge_ecommerce/pages/ecommerce_5/ecommerce_5.dart';
+import 'package:ft_ui_challenge_ecommerce/pages/ecommerce_6/ecommerce_6.dart';
+import 'package:ft_ui_challenge_ecommerce/pages/ecommerce_7/ecommerce_7.dart';
 
 import 'pages/home_page.dart';
 
@@ -21,7 +23,9 @@ class MyApp extends StatelessWidget {
         '/second': (context) => MyEcommerce2(),
         '/third': (context) => MyEcommerce3(),
         '/four': (context) => MyEcommerce4(),
-        '/five': (context) => MyEcommerce5()
+        '/five': (context) => MyEcommerce5(),
+        '/six': (context) => MyEcommerce6(),
+        '/seven': (context) => MyEcommerce7(),
       },
     );
   }
