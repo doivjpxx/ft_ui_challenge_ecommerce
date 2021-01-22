@@ -1,6 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:ft_ui_challenge_ecommerce/constants/assets.dart';
 
 class MyEcommerce9 extends StatelessWidget {
+  final List<Map> items = [
+    {
+      "title": "Kappa Velour",
+      "category": "Bucket",
+      "price": 5500,
+      "tags": "#Cotton #polyster #Branded design",
+      "image": images[0]
+    },
+    {
+      "title": "North Salty",
+      "category": "Bucket",
+      "price": 67000,
+      "tags": "#Cotton #polyster #Branded design",
+      "image": images[1]
+    },
+    {
+      "title": "Mest Takel",
+      "category": "Bucket",
+      "price": 67000,
+      "tags": "#Cotton #polyster #Branded design",
+      "image": images[2]
+    },
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,9 +61,16 @@ class MyEcommerce9 extends StatelessWidget {
           ),
         ),
         centerTitle: true,
-        // bottom: _buildBottomBar(),
+        bottom: _buildBottomBar(),
       ),
-      body: Container(),
+      body: SafeArea(
+        child: ListView.builder(
+          physics: const BouncingScrollPhysics(
+              parent: AlwaysScrollableScrollPhysics()),
+          itemBuilder: _buildListView,
+          itemCount: items.length + 1,
+        ),
+      ),
       bottomNavigationBar: _buildBottomNavigationBar(),
     );
   }
@@ -60,6 +92,121 @@ class MyEcommerce9 extends StatelessWidget {
       currentIndex: 0,
       type: BottomNavigationBarType.fixed,
       fixedColor: Colors.red,
+    );
+  }
+
+  Widget _buildBottomBar() {
+    return PreferredSize(
+      preferredSize: Size.fromHeight(80.0),
+      child: Container(
+        padding: const EdgeInsets.all(10.0),
+        child: Card(
+            child: TextField(
+          decoration: InputDecoration(
+            border: InputBorder.none,
+            icon: IconButton(
+              onPressed: () {},
+              icon: Icon(Icons.search),
+            ),
+            suffixIcon: IconButton(onPressed: () {}, icon: Icon(Icons.mic)),
+          ),
+        )),
+      ),
+    );
+  }
+}
+
+extension MoreMyEcommerce9 on MyEcommerce9 {
+  Widget _buildListView(BuildContext context, int index) {
+    if (index == 0) {
+      return Container(
+        padding: EdgeInsets.all(20.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            Text(
+              "Branded Bucket",
+              style: TextStyle(fontSize: 18.0),
+            ),
+            Text("See All", style: TextStyle(color: Colors.grey.shade500)),
+          ],
+        ),
+      );
+    }
+    Map item = items[index - 1];
+    return _buildProductCard(item);
+  }
+
+  Widget _buildProductCard(Map item) {
+    return Container(
+      padding: EdgeInsets.only(left: 10.0, right: 10.0),
+      margin: EdgeInsets.only(bottom: 20.0),
+      height: 300,
+      child: Row(
+        children: <Widget>[
+          Expanded(
+              child: Container(
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: NetworkImage(item['image']),
+                  fit: BoxFit.cover,
+                ),
+                borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                boxShadow: <BoxShadow>[
+                  BoxShadow(
+                      color: Colors.grey,
+                      offset: Offset(5.0, 5.0),
+                      blurRadius: 10.0)
+                ]),
+          )),
+          Expanded(
+            child: Container(
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    item["title"],
+                    style:
+                        TextStyle(fontSize: 22.0, fontWeight: FontWeight.w700),
+                  ),
+                  SizedBox(
+                    height: 10.0,
+                  ),
+                  Text(item["category"],
+                      style: TextStyle(color: Colors.grey, fontSize: 18.0)),
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  Text("\$${item["price"].toString()}",
+                      style: TextStyle(
+                        color: Colors.red,
+                        fontSize: 30.0,
+                      )),
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  Text(item["tags"],
+                      style: TextStyle(
+                          fontSize: 18.0, color: Colors.grey, height: 1.5))
+                ],
+              ),
+              margin: const EdgeInsets.only(top: 20.0, bottom: 20.0),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                      bottomRight: Radius.circular(10.0),
+                      topRight: Radius.circular(10.0)),
+                  color: Colors.white,
+                  boxShadow: <BoxShadow>[
+                    BoxShadow(
+                        color: Colors.grey,
+                        offset: Offset(5.0, 5.0),
+                        blurRadius: 10.0)
+                  ]),
+            ),
+          )
+        ],
+      ),
     );
   }
 }
