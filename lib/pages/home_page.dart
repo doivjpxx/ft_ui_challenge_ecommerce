@@ -5,7 +5,7 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView.builder(
-        itemCount: 9,
+        itemCount: 11,
         itemBuilder: (context, index) {
           return ListTile(
             title: _buildText(index),
@@ -46,6 +46,12 @@ class MyHomePage extends StatelessWidget {
       case 8:
         _title = 'Shopping';
         break;
+      case 9:
+        _title = 'Detail 2';
+        break;
+      case 10:
+        _title = 'Detail 3';
+        break;
       default:
         break;
     }
@@ -80,6 +86,12 @@ class MyHomePage extends StatelessWidget {
         break;
       case 8:
         Navigator.pushNamed(context, '/nine');
+        break;
+      case 9:
+        Navigator.pushNamed(context, '/ten');
+        break;
+      case 10:
+        Navigator.pushNamed(context, '/eleven');
         break;
       default:
         break;
